@@ -1,4 +1,4 @@
-import launch
+import neko
 from scripts.physton_prompt.get_lang import get_lang
 
 packages = {
@@ -28,7 +28,7 @@ def get_packages_state():
             'package': package,
             'state': False
         }
-        if launch.is_installed(package) or launch.is_installed(package_name):
+        if neko.is_installed(package) or neko.is_installed(package_name):
             item['state'] = True
 
         states.append(item)
@@ -39,7 +39,7 @@ def get_packages_state():
 def install_package(name, package):
     result = {'state': False, 'message': ''}
     try:
-        launch.run_pip(f"install {package}", f"startfk-prompt-all-in-one: {name}")
+        neko.run_pip(f"install {package}", f"startfk-prompt-all-in-one: {name}")
         result['state'] = True
         result['message'] = get_lang('install_success', {'0': package})
     except Exception as e:

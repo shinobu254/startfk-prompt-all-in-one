@@ -56,8 +56,8 @@ class Storage:
         if os.path.getsize(filename) == 0:
             return None
         try:
-            import launch
-            if not launch.is_installed("chardet"):
+            import neko
+            if not neko.is_installed("chardet"):
                 with open(filename, 'r') as f:
                     data = json.load(f)
             else:
